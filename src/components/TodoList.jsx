@@ -6,11 +6,11 @@ const TodoList = ({ todos }) => {
   return (
     <div>
       {todos ? (
-        todos.map(todo => {
+        todos.map((todo) => {
           return (
             <TodoItem
-              key={todo}
-              todo={todo}
+              key={todo.id}
+              todo={todo.text}
               // deleteTodo={deleteTodo}
               style={{ background: "grey" }}
             />
@@ -23,7 +23,7 @@ const TodoList = ({ todos }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return { todos: state.todos };
 };
 

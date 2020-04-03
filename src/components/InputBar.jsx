@@ -5,11 +5,11 @@ import { addTodo } from "../actions";
 class InputBar extends React.Component {
   state = { inputValue: "" };
 
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     this.setState({ inputValue: e.target.value });
   };
 
-  addTodo = e => {
+  addTodo = (e) => {
     e.preventDefault();
     this.props.addTodo(this.state.inputValue);
     this.setState({ inputValue: "" });
@@ -39,7 +39,7 @@ class InputBar extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return { addTodo: state.addTodo };
 };
 

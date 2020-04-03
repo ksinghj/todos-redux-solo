@@ -1,12 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
+import TodoItem from "./TodoItem";
 
 const TodoList = ({ todos }) => {
   return (
     <div>
       {todos ? (
         todos.map(todo => {
-          return <p>{todo}</p>;
+          return (
+            <TodoItem
+              key={todo}
+              todo={todo}
+              // deleteTodo={deleteTodo}
+              style={{ background: "grey" }}
+            />
+          );
         })
       ) : (
         <div>No Todos</div>

@@ -1,12 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
-import { inputChange } from "../actions";
+import { addTodo } from "../actions";
 
 class InputBar extends React.Component {
+  state = { inputValue: "" };
+
+  handleInputChange = e => {
+    this.setState({ inputValue: e.target.value });
+  };
+
+  addTodo = e => {
+    e.preventDefault();
+    this.props.addTodo(this.state.inputValue);
+    this.setState({ inputValue: "" });
+  };
+
   render() {
     return (
       <div>
-        <form onSubmit={this.props.addTodo} className="ui form">
+        <form onSubmit={this.addTodo} className="ui form">
           <div className="field">
             <label style={{ marginBottom: "1em" }}>Add a todo here:</label>
             <input
@@ -16,8 +28,8 @@ class InputBar extends React.Component {
               ref={this.txtRef}
               type="text"
               placeholder="Walk the dog..."
-              onChange={this.props.inputChange}></input>
-            <button className="ui button" type="submit">
+              onChange={this.handleInputChange}></input>
+            <button onClick={this.addTodo} className="ui button" type="submit">
               Submit
             </button>
           </div>
@@ -28,7 +40,7 @@ class InputBar extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { handleInputChange: state.handleInputChange };
+  return { addTodo: state.addTodo };
 };
 
-export default connect(mapStateToProps, { inputChange })(InputBar);
+export default connect(mapStateToProps, { addTodo })(InputBar);
